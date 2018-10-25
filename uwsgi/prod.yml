@@ -1,0 +1,20 @@
+uwsgi:
+    # socket: /tmp/backend.sock
+    https2: $(https_info)
+    http: $(http)
+    chdir: ..
+    virtualenv: ..
+    chmod: 666
+    master: 16
+    threads: 1
+    thunder-lock: true
+    max-requests: 6000
+    max-requests-delta: 300
+    processes: 32
+    plugins: python
+    manage-script-name: true
+    callable: application
+    static-map: /static=staticfiles
+    mount: /=app/wsgi.py
+    attach-daemon: celery worker -B -l INFO -s /tmp/celerybeat-schedule --pidfile /tmp/celeryd.pid -A app -f /opt/python/log/celery.log
+    harakiri: 10
