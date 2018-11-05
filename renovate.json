@@ -12,10 +12,10 @@
   },
   "assignees": ["hiroaki-yamamoto"],
   "reviewers": ["hiroaki-yamamoto"],
-  "groupName": "Minor Updates",
+  "groupName": "Updates",
   "automerge": true,
   "major": {
-      "groupName": "Major updates",
+      "groupName": "Major Updates",
       "automerge": false
   }
 }
