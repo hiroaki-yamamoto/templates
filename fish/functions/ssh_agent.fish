@@ -8,8 +8,4 @@ function ssh_agent --description 'launch the ssh-agent and add the id_rsa identi
     else
         eval (command ssh-agent -c | sed 's/^setenv/set -Ux/')
     end
-    set -l identity $HOME/.ssh/id_rsa
-    set -l fingerprint (ssh-keygen -lf $identity | awk '{print $2}')
-    ssh-add -l | grep -q $fingerprint
-        or ssh-add $identity
 end
