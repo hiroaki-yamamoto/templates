@@ -13,4 +13,4 @@ set -xg VISUAL "$EDITOR"
 set -xg PINENTRY "/usr/bin/pinentry-qt"
 set -xg CHROME_BIN "/usr/bin/chromium"
 
-set -xg SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+# set -xg SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
