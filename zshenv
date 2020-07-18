@@ -1,13 +1,18 @@
 HISTFILE=~/.history
-HISTSIZE=10
-SAVEHIST=10
-NPM_PACKAGES="${HOME}/.npm-packages"
-export GOPATH="${HOME}/Documents/Workspace/go"
+HISTSIZE=100
+SAVEHIST=100
+export NPM_PACKAGES="${HOME}/.npm-packages"
+export GOPATH="${HOME}/go"
+export GO111MODULE=on
+export GOPRIVATE=github.com
+export GIT_TERMINAL_PROMPT=1
 _PATH=(
   ${GOPATH}/bin
   ${NPM_PACKAGES}/bin
-  ${HOME}/.gem/ruby/*/bin
   ${HOME}/opt/*/bin
+  ${HOME}/.gem/ruby/*/bin
+  ${HOME}/.cargo/bin
+  ${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
 )
 _PATH=$(printf ":%s" ${_PATH[@]})
 
@@ -18,5 +23,4 @@ export FPATH="${FPATH}:${HOME}/zsh_completion"
 export PATH="${_PATH:1}:${PATH}"
 typeset -U path PATH
 export CHROME_BIN="/usr/bin/chromium"
-
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export COMPOSE_DOCKER_CLI_BUILD=1
