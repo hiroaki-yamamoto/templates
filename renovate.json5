@@ -13,9 +13,9 @@
     "enabled": true,
     "extends": ["schedule:weekends"]
   },
-  "assignees": ["hiroaki-yamamoto"],
-  "reviewers": ["hiroaki-yamamoto"],
-  "groupName": "Updates",
+  "assigneesFromCodeOwners": true,
+  "reviewersFromCodeOwners": true,
+  "groupName": "General Updates",
   "automerge": true,
   "major": {
     "automerge": false,
