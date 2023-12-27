@@ -1,0 +1,30 @@
+name: Bug Report
+description: If you found a bug, please use this template.
+labels:
+  - bug
+body:
+  - type: checkboxes
+    id: os
+    attributes:
+      label: On what operating system(s) did you encounter the problem?
+      description: Check all that apply.
+      options:
+        - label: Windows
+        - label: MacOS
+        - label: Linux
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the bug
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How to reproduce it?
+      description: Describe the steps to reproduce the behavior.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
