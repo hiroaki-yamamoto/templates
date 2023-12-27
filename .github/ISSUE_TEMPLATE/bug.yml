@@ -12,19 +12,27 @@ body:
         - label: Windows
         - label: MacOS
         - label: Linux
+    validations:
+      required: true
   - type: textarea
     id: description
     attributes:
       label: Description
       description: A clear and concise description of what the bug is.
       placeholder: Describe the bug
+    validations:
+      required: true
   - type: textarea
     id: reproduction
     attributes:
       label: How to reproduce it?
       description: Describe the steps to reproduce the behavior.
+    validations:
+      required: true
   - type: textarea
     id: expected
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
