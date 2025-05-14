@@ -1,0 +1,55 @@
+\documentclass[a4paper]{article}
+
+\hsize=2in
+\vsize=1in
+
+\usepackage{fontspec}
+\setmainfont{IPAexMincho}
+\setsansfont{IPAexMincho}
+\setmonofont{Fira Code}
+
+\usepackage{amssymb,amsmath,IEEEtrantools}
+\usepackage{listings}
+\usepackage{color,xcolor}
+% \usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx}
+\usepackage{atbegshi}
+\AtBeginShipoutFirst{\special{pdf:tounicode EUC-UCS2}}
+\usepackage[bookmarks=true,colorlinks=true,pdfencoding=auto]{hyperref}
+\usepackage{fancybox, fancyhdr, ascmac}
+\usepackage{lipsum}
+
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    extendedchars=true,
+    frame=single,
+    keepspaces=true,
+    language=C++,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    stepnumber=1,
+    tabsize=4,
+    caption=\lstname
+}
+
+\author{Hiroaki Yamamoto}
+\title{}
+
+\begin{document}
+  \nocite{*}
+  \pagenumbering{gobble}
+  \cfoot{\thepage}
+  \section{この文書について}
+    \lipsum
+  \section{なぜ}
+    \lipsum
+
+  \bibliographystyle{plain}
+  \bibliography{refs}
+\end{document}
