@@ -1,15 +1,9 @@
 all: main.pdf
 
-main.dvi: main.tex
-	xelatex main
-
-main.aux: main.dvi
+main.pdf main.bbl main.blg main.log main.out main.aux: main.tex
+	xelatex -shell-escape main
 	pbibtex main
-
-main.pdf: main.dvi main.aux main.bbl
-	dvipdfmx -f ptex-ipa main
+	xelatex -shell-escape main
 
 clean:
-	rm -rf main.pdf \
-		*.xbb *.aux *.dvi *.log *.bbl *.blg *.toc *.out **/*.xbb **/*.aux \
-		**/*.dvi **/*.log **/*.bbl **/*.blg **/*.toc **/*.out
+	rm -rf main.pdf main.bbl main.blg main.log main.out main.aux

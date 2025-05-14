@@ -1,11 +1,17 @@
 \documentclass[a4paper]{article}
 
-\hsize=2in
-\vsize=1in
+\usepackage{geometry}
+\geometry{a4paper, hmargin = {2.5cm}, top={2.5cm}}
+
+\usepackage{polyglossia}
+\setmainlanguage{japanese}
 
 \usepackage{fontspec}
-\setmainfont{IPAexMincho}
-\setsansfont{IPAexMincho}
+\setmainfont[
+  BoldFont = {NotoSansCJK-Bold.ttc},
+  ItalicFont = {NotoSansCJK-Light.ttc},
+  BoldItalicFont = {NotoSansCJK-Bold.ttc}
+]{NotoSansCJK-Regular.ttc}
 \setmonofont{Fira Code}
 
 \usepackage{amssymb,amsmath,IEEEtrantools}
@@ -27,7 +33,7 @@
     extendedchars=true,
     frame=single,
     keepspaces=true,
-    language=C++,
+    language=Python,
     numbers=left,
     numbersep=5pt,
     showspaces=false,
@@ -39,17 +45,24 @@
 }
 
 \author{Hiroaki Yamamoto}
-\title{}
+\title{\LaTeX のテンプレートについて}
 
 \begin{document}
+% Title
   \nocite{*}
-  \pagenumbering{gobble}
+  \pagenumbering{arabic}
   \cfoot{\thepage}
-  \section{この文書について}
-    \lipsum
-  \section{なぜ}
-    \lipsum
+  \maketitle
+%==========
 
-  \bibliographystyle{plain}
-  \bibliography{refs}
+\begin{sloppypar}
+  \section{この文書について}
+    これは {\bf テスト} です。
+    \lipsum
+\end{sloppypar}
+
+% bibliography
+\bibliographystyle{plain}
+\bibliography{refs}
+%==========
 \end{document}
