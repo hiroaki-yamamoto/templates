@@ -12,12 +12,13 @@
   ItalicFont = {NotoSansCJK-Light.ttc},
   BoldItalicFont = {NotoSansCJK-Bold.ttc}
 ]{NotoSansCJK-Regular.ttc}
-\setmonofont{Fira Code}
+\setmonofont{IPAexMincho}
 % \usepackage[space]{xeCJK}
 % \xeCJKsetup{
 %   PunctStyle=kaiming, % 句読点の禁則処理
 % }
 
+\usepackage[T1]{fontenc}
 \usepackage{amssymb,amsmath,IEEEtrantools}
 \usepackage{listings}
 \usepackage{color,xcolor}
@@ -26,7 +27,12 @@
 \usepackage{atbegshi}
 \AtBeginShipoutFirst{\special{pdf:tounicode EUC-UCS2}}
 \usepackage[bookmarks=true,colorlinks=true,pdfencoding=auto]{hyperref}
-\usepackage{fancybox, fancyhdr, ascmac}
+\usepackage{fancybox, fancyhdr, fancyvrb, ascmac}
+\usepackage{ltablex, enumitem}
+
+\keepXColumns
+\VerbatimFootnotes
+
 \usepackage{lipsum}
 
 \lstset{
