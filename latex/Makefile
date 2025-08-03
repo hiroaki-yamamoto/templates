@@ -1,10 +1,15 @@
-all: main.pdf
+.PHONY: all
+all: ./out/main.pdf
 
-main.pdf main.bbl main.blg main.log main.out main.aux: main.tex
-	xelatex -shell-escape main
-	pbibtex main
-	xelatex -shell-escape main
-	xelatex -shell-escape main
+./out/main.pdf: main.tex
+	mkdir -p $(dir $@)
+	xelatex --output-directory=$(dir $@) -shell-escape $^
+	pbibtex $(basename $@)
+	xelatex --output-directory=$(dir $@) -shell-escape $^
+	xelatex --output-directory=$(dir $@) -shell-escape $^
+
+release: ./out/main.pdf
+	rm -rf $(filter-out $(wildcard ./out/*.pdf), $(wildcard ./out/*))
 
 clean:
-	rm -rf main.pdf main.bbl main.blg main.log main.out main.aux
+	rm -rf ./out
