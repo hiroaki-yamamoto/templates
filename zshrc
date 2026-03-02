@@ -61,6 +61,8 @@ elif [ $(uname) = "Darwin" ]; then
   alias ls="ls -G"
 fi
 
+alias curl="curl -fLC - --retry 3 --retry-delay 3"
+
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 bindkey "\e[1~" beginning-of-line # Home
@@ -93,6 +95,14 @@ bindkey "^[[1;5C" forward-word
 bindkey "\e[3~" delete-char # Del
 bindkey "^W" insert-last-word
 
+# for keychain
+eval $(keychain --eval id_ed25519 CFED0D7407192EBC4CA894C6EBCBD3A905EBD5FF)
+#unset SSH_AGENT_PID
+#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#  echo "Set SSH_AUTH_SOCK to ${SSH_AUTH_SOCK}"
+#fi
+
 # Include NVM
 #source /usr/share/nvm/init-nvm.sh
 
@@ -109,3 +119,13 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/hyamamoto/opt/k8s/bin/kustomize kustomize
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+# qlty
+export QLTY_INSTALL="$HOME/.qlty"
+export PATH="$QLTY_INSTALL/bin:$PATH"
