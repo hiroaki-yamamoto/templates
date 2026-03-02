@@ -1,25 +1,20 @@
-source /usr/share/gitstatus/gitstatus.prompt.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 #Load auto completion module, colors, and history functions.
-autoload -U compinit promptinit colors smart-insert-last-word
+autoload -Uz compinit promptinit colors smart-insert-last-word
 compinit
 promptinit
 colors
 
-zstyle ':completion:*:default' menu select=1 ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|[-_.]=**'
+USER_PROMPT="%{%F{green}%B%}%n%{%b%f%}"
+HOST_PROMPT="%{%F{magenta}%B%}%M%{%b%f%}"
+TTY_PROMPT="%{%F{yellow}%B%}%l%{%b%f%}"
+DIR_PROMPT="%{%F{cyan}%B%}%~%{%b%f%}"
 
 #Prompt
-PROMPT="[%{$fg[green]%B%}%n%{%b$reset_color%}@%{$fg[magenta]%B%}%M%{%b$reset_color%} (%{$fg[yellow]%B%}%l%{%b$reset_color%}) %{$fg[cyan]%B%}%~%{%b$reset_color%}]"
+PROMPT="[$USER_PROMPT@$HOST_PROMPT ($TTY_PROMPT) $DIR_PROMPT]"
 case $(id -u) in
     0)
         PROMPT="${PROMPT}# "
@@ -56,7 +51,6 @@ if [ $(uname) = "Linux" ]; then
   alias ls="ls --color=auto"
   alias pbcopy='xclip -selection clipboard'
   alias pbpaste='xclip -selection clipboard -o'
-  alias curl="curl -fLC - --retry 3 --retry-delay 3"
 elif [ $(uname) = "Darwin" ]; then
   alias ls="ls -G"
 fi
@@ -97,31 +91,23 @@ bindkey "^W" insert-last-word
 
 # for keychain
 eval $(keychain --eval id_ed25519 CFED0D7407192EBC4CA894C6EBCBD3A905EBD5FF)
-#unset SSH_AGENT_PID
-#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-#  echo "Set SSH_AUTH_SOCK to ${SSH_AUTH_SOCK}"
-#fi
 
 # Include NVM
 #source /usr/share/nvm/init-nvm.sh
 
 if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
-  function chpwd {
+  chpwd() {
     local SEARCH=' '
     local REPLACE='%20'
     local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
     printf '\e]7;%s\a' "$PWD_URL"
   }
-
   chpwd
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/hyamamoto/opt/k8s/bin/kustomize kustomize
-
+if [ `dirname $TTY` = "/dev/pts" ]; then
+  . /usr/share/powerline/bindings/zsh/powerline.zsh
+fi
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
