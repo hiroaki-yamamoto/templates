@@ -1,6 +1,7 @@
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_PLUGINS='/usr/share/zsh/plugins'
+source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #Load auto completion module, colors, and history functions.
 autoload -Uz compinit promptinit colors smart-insert-last-word
@@ -106,7 +107,7 @@ if [[ $TERM_PROGRAM == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]] {
 }
 
 if [ `dirname $TTY` = "/dev/pts" ]; then
-  . /usr/share/powerline/bindings/zsh/powerline.zsh
+  source /usr/share/powerline/bindings/zsh/powerline.zsh
 fi
 
 # Load Angular CLI autocompletion.

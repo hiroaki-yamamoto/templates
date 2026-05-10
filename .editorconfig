@@ -16,3 +16,9 @@ spaces_around_brackets = both
 
 [*.py]
 indent_size = 4
+
+[Makefile]
+indent_style = tab
+
+[*.ts]
+quote_type = single
