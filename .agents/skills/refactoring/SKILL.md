@@ -16,3 +16,5 @@ description: |
   between time complexity and space complexity, follow these rules:
   - If space complexity is a critical issue, prioritize space complexity.
   - If space complexity is **not** a critical issue, prioritize time complexity.
+- Refactor the code assuming it will run in a multi-threaded environment.
+  (iow. The code must be thread-safe.)

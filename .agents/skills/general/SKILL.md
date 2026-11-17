@@ -18,3 +18,5 @@ description: |
   SOLID principles, be well-structured, and include comments where necessary
   to explain complex logic.
 5. The code must be well-tested.
+6. Design the code assuming it will run in a multi-threaded environment.
+  (iow. The code must be thread-safe.)
